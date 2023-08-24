@@ -1,6 +1,6 @@
 matplotlib==3.3.3
 pytz==2020.5
-nltk==3.5
+nltk
 altair==4.1.0
 newspaper3k==0.2.8
 pandas==1.2.1
