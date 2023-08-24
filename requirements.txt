@@ -4,5 +4,4 @@ scikit-learn
 pandas
 regex
 Sastrawi
-strings
 openpyxl
