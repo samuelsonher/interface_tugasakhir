@@ -2,7 +2,6 @@ import streamlit as st
 # import library
 import pandas as pd
 import nltk
-nltk.download("wordnet")
 import string
 import re
 from sklearn.model_selection import train_test_split
@@ -35,7 +34,7 @@ df_svm['textPreprocessing'] = df_start_svm['textPreprocessing']
 df_svm['sentiment'] = df_start_svm['sentiment']
 df_svm['prediksi'] = pred
 
-st.title("Pengujian SVM dan Backward Elimination")
+st.title("Pengujian SVM")
 st.write(f"Accuracy     : {accuracy}")
 st.write(f"Precision    : {precision}")
 st.write(f"Recall       : {recall}")

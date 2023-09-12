@@ -2,7 +2,6 @@ import streamlit as st
 # import library
 import pandas as pd
 import nltk
-nltk.download("wordnet")
 import string
 import re
 from sklearn.model_selection import train_test_split

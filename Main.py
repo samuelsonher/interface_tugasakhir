@@ -2,7 +2,6 @@ import streamlit as st
 # import library
 import pandas as pd
 import nltk
-nltk.download("wordnet")
 import string
 import re
 from sklearn.model_selection import train_test_split
@@ -121,7 +120,7 @@ model.fit(X_train,y_train)
 
 # halaman klasifikasi
 
-st.title("Analisis Sentimen Ulasan Telkomsel")
+st.title("Analisis Sentimen Kepuasan Pelanggan Telkomsel")
 with st.form("Analisis Sentimen", clear_on_submit=True):
     data = st.text_area("Masukkan ulasan:  ")
     result = st.form_submit_button("Proses")
