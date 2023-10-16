@@ -17,7 +17,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import cross_val_predict
 
 model = SVC(kernel='rbf', C=1, gamma=0.5)
-df_start_svm = pd.read_csv('hasiltfidf1200_1.csv', encoding= 'unicode_escape')
+df_start_svm = pd.read_csv('hasiltfidf1200_2.csv', encoding= 'unicode_escape')
 X = df_start_svm.iloc[:,:-3]
 Y = df_start_svm.iloc[:,-1]
 #score_svm = cross_val_score(model, X, Y, cv=5)

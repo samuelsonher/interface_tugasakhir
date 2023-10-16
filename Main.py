@@ -35,7 +35,7 @@ def tokenization(text):
     return tokens
 
 #step 5 koreksi kata
-normalizad_word = pd.read_excel("normalisasi.xlsx")
+normalizad_word = pd.read_excel("normalisasi_2.xlsx")
 normalizad_word_dict = {}
 
 for index, row in normalizad_word.iterrows():
@@ -80,7 +80,7 @@ def stemming(text):
 
 # pembobotan TF-IDF
 
-df_start_tfidf = pd.read_csv("hasiltextpre1200_1.csv", encoding='unicode_escape')
+df_start_tfidf = pd.read_csv("hasiltextpre1200_2.csv", encoding='unicode_escape')
 
 X = df_start_tfidf[['content','textPreprocessing']]
 y = df_start_tfidf['sentiment']
@@ -108,12 +108,12 @@ df_tfidf["sentiment"] = df_start_tfidf["sentiment"]
 
 # pengujian SVM
 
-df_start_svm_be = pd.read_csv('hasilbackward1200_belumfix_1.csv', encoding= 'unicode_escape')
+df_start_svm_be = pd.read_csv('hasilbackward1200_belumfix_2.csv', encoding= 'unicode_escape')
 X_train_be, X_test_be, y_train_be, y_test_be = train_test_split(df_start_svm_be.iloc[:,:-3],df_start_svm_be['sentiment'], test_size=0.2)
 model_be = SVC(kernel='rbf', C=1, gamma=0.5)
 model_be.fit(X_train_be,y_train_be)
 
-df_start_svm = pd.read_csv('hasiltfidf1200_1.csv', encoding= 'unicode_escape')
+df_start_svm = pd.read_csv('hasiltfidf1200_2.csv', encoding= 'unicode_escape')
 X_train, X_test, y_train, y_test = train_test_split(df_start_svm.iloc[:,:-3],df_start_svm['sentiment'], test_size=0.2)
 model = SVC(kernel='rbf', C=1, gamma=0.5)
 model.fit(X_train,y_train)
