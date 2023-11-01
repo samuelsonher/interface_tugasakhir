@@ -5,3 +5,4 @@ pandas
 regex
 Sastrawi
 openpyxl
+matplotlib
