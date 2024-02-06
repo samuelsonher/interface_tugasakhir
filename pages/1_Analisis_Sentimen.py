@@ -174,7 +174,8 @@ with st.form("Analisis Sentimen", clear_on_submit=True):
         st.table(tf_vect)
         st.subheader("Hasil Seleksi Fitur Backward Elimination")
         st.table(data_baru_be)
-        st.subheader("Hasil Analisis Sentimen dengan SVM dan Backward Elimination")
-        st.write(f"Sentimen: {my_pred_be}")
         st.subheader("Hasil Analisis Sentimen dengan SVM")
         st.write(f"Sentimen: {my_pred}")
+        st.subheader("Hasil Analisis Sentimen dengan SVM dan Backward Elimination")
+        st.write(f"Sentimen: {my_pred_be}")
+        

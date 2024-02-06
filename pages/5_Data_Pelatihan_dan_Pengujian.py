@@ -35,17 +35,17 @@ for train, test in skf.split(x, y):
     model.fit(X_train,y_train)
     prediction = model.predict(X_test)
     df_pred= pd.DataFrame(df_start_svm_be.loc[test,['content','textPreprocessing','sentiment']])
-    df_pred['prediksi'] = prediction
+    df_pred['prediksi backward svm'] = prediction
     df_traintest_besvm = pd.concat([df_traintest_besvm, df_pred])
     cr = classification_report(y_test, prediction,output_dict=True)
     akurasi.append(cr['accuracy'])
     pre_re_f1.append(cr['macro avg'])
-class_report_be = classification_report(df_traintest_besvm['sentiment'], df_traintest_besvm['prediksi'], output_dict=True)
+class_report_be = classification_report(df_traintest_besvm['sentiment'], df_traintest_besvm['prediksi backward svm'], output_dict=True)
 df_classrep_be = pd.DataFrame(class_report_be).transpose()
 df_classrep_be = df_classrep_be.loc[['NEGATIF','NETRAL','POSITIF','macro avg']]
 df_classrep_be = df_classrep_be.drop(columns = ['support'])
 df_classrep_be = df_classrep_be.mul(100)
-conf_matrix = confusion_matrix(df_traintest_besvm['sentiment'], df_traintest_besvm['prediksi'])
+conf_matrix = confusion_matrix(df_traintest_besvm['sentiment'], df_traintest_besvm['prediksi backward svm'])
 df_confmat_be = pd.DataFrame(conf_matrix)
 df_confmat_be.columns = ['Prediksi Negatif','Prediksi Netral','Prediksi Positif']
 df_confmat_be.index = ['Aktual Negatif','Aktual Netral','Aktual Positif']
@@ -84,17 +84,17 @@ for train, test in skf.split(x, y):
     model.fit(X_train,y_train)
     prediction = model.predict(X_test)
     df_pred= pd.DataFrame(df_start_svm.loc[test,['content','textPreprocessing','sentiment']])
-    df_pred['prediksi'] = prediction
+    df_pred['prediksi svm'] = prediction
     df_traintest_svm = pd.concat([df_traintest_svm, df_pred])
     cr = classification_report(y_test, prediction,output_dict=True)
     akurasi.append(cr['accuracy'])
     pre_re_f1.append(cr['macro avg'])
-class_report = classification_report(df_traintest_svm['sentiment'], df_traintest_svm['prediksi'], output_dict=True)
+class_report = classification_report(df_traintest_svm['sentiment'], df_traintest_svm['prediksi svm'], output_dict=True)
 df_classrep = pd.DataFrame(class_report).transpose()
 df_classrep = df_classrep.loc[['NEGATIF','NETRAL','POSITIF','macro avg']]
 df_classrep = df_classrep.drop(columns = ['support'])
 df_classrep = df_classrep.mul(100)
-conf_matrix = confusion_matrix(df_traintest_svm['sentiment'], df_traintest_svm['prediksi'])
+conf_matrix = confusion_matrix(df_traintest_svm['sentiment'], df_traintest_svm['prediksi svm'])
 df_confmat = pd.DataFrame(conf_matrix)
 df_confmat.columns = ['Prediksi Negatif','Prediksi Netral','Prediksi Positif']
 df_confmat.index = ['Aktual Negatif','Aktual Netral','Aktual Positif']
@@ -146,8 +146,8 @@ st.pyplot(fig)
 st.subheader('Perbandingan Precision (Presisi)')
 fig, ax = plt.subplots(figsize =(12, 8)) 
 # set height of bar 
-svm = df_classrep['precision']
-be_svm = df_classrep_be['precision']
+svm = kfoldreport_svm['precision']
+be_svm = kfoldreport_besvm['precision']
 
 # Set position of bar on X axis 
 br1 = np.arange(len(svm)) 
@@ -157,7 +157,7 @@ bars = ax.bar(br1, svm, color ='r', width = barWidth, label ='SVM')
 bars = ax.bar(br2, be_svm, color ='g', width = barWidth, label ='BE SVM') 
 # Adding Xticks 
 plt.xlabel('Precision', fontweight ='bold', fontsize = 10) 
-plt.xticks([r + barWidth for r in range(len(svm))],  df_classrep.index)
+plt.xticks([r + barWidth for r in range(len(svm))],  ['k1','k2','k3','k4','k5','rata-rata'])
 
 for bars in ax.containers:
     ax.bar_label(bars)
@@ -168,8 +168,8 @@ st.pyplot(fig)
 st.subheader('Perbandingan Recall')
 fig, ax = plt.subplots(figsize =(12, 8)) 
 # set height of bar 
-svm = df_classrep['recall']
-be_svm = df_classrep_be['recall']
+svm = kfoldreport_svm['recall']
+be_svm = kfoldreport_besvm['recall']
 
 # Set position of bar on X axis 
 br1 = np.arange(len(svm)) 
@@ -179,7 +179,7 @@ bars = ax.bar(br1, svm, color ='r', width = barWidth, label ='SVM')
 bars = ax.bar(br2, be_svm, color ='g', width = barWidth, label ='BE SVM') 
 # Adding Xticks 
 plt.xlabel('Recall', fontweight ='bold', fontsize = 10) 
-plt.xticks([r + barWidth for r in range(len(svm))],  df_classrep.index)
+plt.xticks([r + barWidth for r in range(len(svm))],  ['k1','k2','k3','k4','k5','rata-rata'])
 
 for bars in ax.containers:
     ax.bar_label(bars)
@@ -190,8 +190,8 @@ st.pyplot(fig)
 st.subheader('Perbandingan F1-Score')
 fig, ax = plt.subplots(figsize =(12, 8)) 
 # set height of bar 
-svm = df_classrep['f1-score']
-be_svm = df_classrep_be['f1-score']
+svm = kfoldreport_svm['f1-score']
+be_svm = kfoldreport_besvm['f1-score']
 
 # Set position of bar on X axis 
 br1 = np.arange(len(svm)) 
@@ -201,7 +201,7 @@ bars = ax.bar(br1, svm, color ='r', width = barWidth, label ='SVM')
 bars = ax.bar(br2, be_svm, color ='g', width = barWidth, label ='BE SVM') 
 # Adding Xticks 
 plt.xlabel('F1-Score', fontweight ='bold', fontsize = 10) 
-plt.xticks([r + barWidth for r in range(len(svm))],  df_classrep.index)
+plt.xticks([r + barWidth for r in range(len(svm))],  ['k1','k2','k3','k4','k5','rata-rata'])
 
 for bars in ax.containers:
     ax.bar_label(bars)
