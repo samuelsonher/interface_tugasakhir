@@ -99,7 +99,7 @@ df_tfidf["sentiment"] = df_start_tfidf["sentiment"]
 
 # pengujian SVM
 
-df_start_svm_be = pd.read_csv('hasilbackward1200_belumfix_2.csv', encoding= 'unicode_escape')
+df_start_svm_be = pd.read_csv('hasilbackward1200_2.csv', encoding= 'unicode_escape')
 X_train_be, X_test_be, y_train_be, y_test_be = train_test_split(df_start_svm_be.iloc[:,:-3],df_start_svm_be['sentiment'], test_size=0.2)
 model_be = SVC(kernel='rbf', C=1, gamma=0.5)
 model_be.fit(X_train_be,y_train_be)

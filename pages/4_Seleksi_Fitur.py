@@ -13,5 +13,5 @@ df_tfidf= pd.read_csv('hasilpembobotantfidf1200_2.csv', encoding= 'unicode_escap
 st.dataframe(df_tfidf)
 
 st.header('Setelah Proses Backward Elimination')
-df_backward= pd.read_csv('hasilbackward1200_belumfix_2.csv', encoding= 'unicode_escape')
+df_backward= pd.read_csv('hasilbackward1200_2.csv', encoding= 'unicode_escape')
 st.dataframe(df_backward)

@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import StratifiedKFold
 
 model = SVC(kernel='rbf', C=1, gamma=0.5)
-df_start_svm_be = pd.read_csv('hasilbackward1200_belumfix_2.csv', encoding= 'unicode_escape')
+df_start_svm_be = pd.read_csv('hasilbackward1200_2.csv', encoding= 'unicode_escape')
 x = df_start_svm_be.iloc[:,:-3]
 y = df_start_svm_be.iloc[:,-1]
 
